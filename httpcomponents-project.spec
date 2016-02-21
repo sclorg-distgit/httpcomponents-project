@@ -5,7 +5,7 @@
 Name:              %{?scl_prefix}%{pkg_name}
 Summary:           Common POM file for HttpComponents
 Version:           6
-Release:           4.9%{?dist}
+Release:           4.10%{?dist}
 License:           ASL 2.0
 URL:               http://hc.apache.org/
 # svn export http://svn.apache.org/repos/asf/httpcomponents/project/tags/%{version} %{pkg_name}-%{version}
@@ -23,7 +23,7 @@ use it as runtime requirement.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %pom_remove_plugin :buildnumber-maven-plugin
 %pom_remove_plugin :clirr-maven-plugin
@@ -34,14 +34,14 @@ set -e -x
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file  : %{pkg_name}
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -50,6 +50,9 @@ set -e -x
 %doc LICENSE.txt NOTICE.txt
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 6-4.10
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 6-4.9
 - maven33 rebuild
 
