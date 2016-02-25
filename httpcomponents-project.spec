@@ -5,7 +5,7 @@
 Name:              %{?scl_prefix}%{pkg_name}
 Summary:           Common POM file for HttpComponents
 Version:           6
-Release:           4.10%{?dist}
+Release:           4.11%{?dist}
 License:           ASL 2.0
 URL:               http://hc.apache.org/
 # svn export http://svn.apache.org/repos/asf/httpcomponents/project/tags/%{version} %{pkg_name}-%{version}
@@ -13,7 +13,7 @@ URL:               http://hc.apache.org/
 Source:            %{pkg_name}-%{version}.tar.xz
 BuildArch:         noarch
 
-BuildRequires:     %{?scl_prefix_java_common}maven-local
+BuildRequires:     %{?scl_prefix}maven-local
 
 
 %description
@@ -50,6 +50,9 @@ set -e -x
 %doc LICENSE.txt NOTICE.txt
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 6-4.11
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 6-4.10
 - maven33 rebuild #2
 
